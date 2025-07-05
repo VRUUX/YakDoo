@@ -1,0 +1,80 @@
+/* GDPR Cookie Consent Banner Styles */
+
+#gdpr-cookie-banner {
+    font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#gdpr-cookie-banner button {
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+}
+
+#gdpr-cookie-banner button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#gdpr-cookie-banner button:active {
+    transform: translateY(0);
+}
+
+#gdpr-cookie-modal {
+    backdrop-filter: blur(5px);
+}
+
+#gdpr-cookie-modal input[type="checkbox"] {
+    accent-color: #ff6600;
+}
+
+#gdpr-cookie-modal input[type="checkbox"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #gdpr-cookie-banner {
+        padding: 15px;
+    }
+    
+    #gdpr-cookie-banner > div > div {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #gdpr-cookie-banner > div > div > div:last-child {
+        justify-content: center;
+    }
+    
+    #gdpr-cookie-modal > div {
+        margin: 10px;
+        padding: 20px;
+    }
+}
+
+/* Animation for banner */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+#gdpr-cookie-banner.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+#gdpr-cookie-banner.slide-down {
+    animation: slideDown 0.3s ease-out;
+} 
