@@ -3,15 +3,19 @@ name: Mobirise Cleanup
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,10 +25,20 @@ jobs:
       - name: Run cleanup script
         run: python .github/scripts/cleanup.py
 
+      - name: Check for changes
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Automated cleanup: remove Mobirise branding, fix scripts, pretty URLs" || echo "No changes to commit"
-          git push 
+          git commit -m "Automated cleanup: remove Mobirise branding, fix scripts, pretty URLs"
+          git push origin main 
