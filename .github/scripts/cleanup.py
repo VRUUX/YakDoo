@@ -8,23 +8,18 @@ def clean_html_file(filepath):
     # Remove Mobirise branding in footer and comments
     content = re.sub(r'<!--.*?Mobirise.*?-->', '', content, flags=re.DOTALL | re.IGNORECASE)
     
-    # Remove the specific Mobirise branding section - look for the unique content
-    # This targets the section that contains "No Code Website Builder" or similar Mobirise text
-    mobirise_patterns = [
-        # Pattern for "No Code Website Builder"
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>No Code Website Builder</a>.*?</section>',
-        # Pattern for "Website Building Software"
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*> Website Building Software</a>.*?</section>',
-        # Pattern for "HTML Maker"
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>HTML Maker</a>.*?</section>',
-        # Pattern for "Best AI Website Creator"
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>Best AI Website Creator</a>.*?</section>',
-        # Generic pattern for any Mobirise link
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>'
+    # Remove the specific Mobirise branding section - more robust pattern
+    # This targets any section with class="display-7" that contains Mobirise links
+    mobirise_section_pattern = r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>'
+    content = re.sub(mobirise_section_pattern, '', content, flags=re.DOTALL | re.IGNORECASE)
+    
+    # Also remove any remaining Mobirise branding sections with different patterns
+    additional_patterns = [
+        r'<section[^>]*class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>',
+        r'<section[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>'
     ]
     
-    # Apply each pattern
-    for pattern in mobirise_patterns:
+    for pattern in additional_patterns:
         content = re.sub(pattern, '', content, flags=re.DOTALL | re.IGNORECASE)
     
     # Remove Mobirise version from meta generator
@@ -46,6 +41,22 @@ def clean_html_file(filepath):
         lambda m: f'href="{m.group(1)}"' if not m.group(1).startswith(('http', 'mailto:', 'tel:')) else m.group(0),
         content
     )
+
+    # Add CSS fix for footer z-index issue
+    if '<style>' not in content:
+        # Add style tag in head if it doesn't exist
+        content = re.sub(
+            r'</head>',
+            r'  <style>\n    /* Fix footer visibility */\n    .footer2 { z-index: 10 !important; position: relative !important; }\n    section[class*="display-7"] { display: none !important; }\n  </style>\n</head>',
+            content
+        )
+    else:
+        # Add CSS to existing style tag
+        content = re.sub(
+            r'<style>',
+            r'<style>\n    /* Fix footer visibility */\n    .footer2 { z-index: 10 !important; position: relative !important; }\n    section[class*="display-7"] { display: none !important; }',
+            content
+        )
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
