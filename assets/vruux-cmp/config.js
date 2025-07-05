@@ -53,211 +53,34 @@ window.VRUUX_CMP_CONFIG = {
         border: '#e0e0e0'
     },
     
-    // Auto-inject settings
-    autoInject: {
-        css: true,
-        js: true,
-        ga: true,
-        clarity: true,
-        thirdParty: true,
-        formHandler: true,
-        ecommerceHandler: true,
-        dashboardHandler: true
+    // GTM settings
+    gtm: {
+        enabled: true,
+        containerId: 'GTM-XXXXXXX' // Replace with your GTM container ID
     },
     
-    // Third-party resource settings
+    // Third-party resources (managed through GTM)
     thirdParty: {
-        youtube: {
-            enabled: true,
-            category: 'marketing', // or 'analytics'
-            privacyEnhanced: true
-        },
-        socialMedia: {
-            facebook: { enabled: true, category: 'marketing' },
-            twitter: { enabled: true, category: 'marketing' },
-            instagram: { enabled: true, category: 'marketing' },
-            linkedin: { enabled: true, category: 'marketing' }
-        },
-        services: {
-            googleMaps: { enabled: true, category: 'necessary' },
-            vimeo: { enabled: true, category: 'marketing' },
-            spotify: { enabled: true, category: 'marketing' },
-            calendly: { enabled: true, category: 'necessary' }
-        }
+        note: 'Third-party resources are now managed through GTM for better control and consent management'
     },
     
-    // Form handling settings
+    // Form handling (managed through GTM)
     forms: {
-        // Consent tracking for form submissions
-        trackConsent: true,
-        
-        // Required consent categories for form submission
-        requiredConsent: ['necessary'],
-        
-        // Optional consent categories
-        optionalConsent: ['analytics', 'marketing'],
-        
-        // Form data retention settings
-        dataRetention: {
-            days: 365,
-            anonymize: true,
-            exportable: true
-        },
-        
-        // Custom form selectors (add your form classes/IDs here)
-        formSelectors: [
-            'form[data-gdpr-form]',
-            '.contact-form',
-            '.enquiry-form',
-            '.feedback-form',
-            '#contactForm',
-            '#enquiryForm'
-        ]
+        note: 'Form tracking and consent management are now handled through GTM for better integration'
     },
     
-    // E-commerce settings
+    // E-commerce (managed through GTM)
     ecommerce: {
-        // Enable e-commerce features
-        enabled: true,
-        
-        // Purchase tracking settings
-        trackPurchases: true,
-        trackCart: true,
-        trackProductViews: true,
-        
-        // Store platforms
-        platforms: {
-            shopify: { enabled: true, category: 'marketing' },
-            zohoCommerce: { enabled: true, category: 'marketing' },
-            woocommerce: { enabled: true, category: 'marketing' },
-            bigcommerce: { enabled: true, category: 'marketing' },
-            squarespace: { enabled: true, category: 'marketing' },
-            wix: { enabled: true, category: 'marketing' }
-        },
-        
-        // Currency and region settings
-        currency: 'USD',
-        region: 'US',
-        
-        // Data retention for e-commerce data
-        dataRetention: {
-            purchaseHistory: 365, // days
-            cartData: 30, // days
-            productViews: 90 // days
-        }
+        note: 'E-commerce tracking is now managed through GTM for better integration with GA4'
     },
     
-    // Dashboard settings
+    // Dashboard tracking (managed through GTM)
     dashboards: {
-        // Enable dashboard features
-        enabled: true,
-        
-        // Dashboard categories and their consent requirements
-        categories: {
-            necessary: {
-                description: 'Essential dashboards for website functionality',
-                consentRequired: false, // Always allowed
-                examples: ['zohoAnalytics', 'grafana', 'metabase', 'kibana']
-            },
-            analytics: {
-                description: 'Analytics and reporting dashboards',
-                consentRequired: true,
-                examples: ['googleLookerStudio', 'powerbi', 'tableau', 'quicksight']
-            },
-            optional: {
-                description: 'Optional dashboards for enhanced experience',
-                consentRequired: true,
-                examples: ['customDashboards']
-            }
-        },
-        
-        // Dashboard platforms with their categories
-        platforms: {
-            zohoAnalytics: {
-                enabled: true,
-                category: 'necessary',
-                name: 'Zoho Analytics',
-                description: 'Business intelligence and analytics platform',
-                consentRequired: false,
-                fallbackMessage: 'This dashboard is essential for understanding our data insights.'
-            },
-            googleLookerStudio: {
-                enabled: true,
-                category: 'analytics',
-                name: 'Google Looker Studio',
-                description: 'Data visualization and reporting platform',
-                consentRequired: true,
-                fallbackMessage: 'This dashboard provides enhanced analytics and insights.'
-            },
-            powerbi: {
-                enabled: true,
-                category: 'analytics',
-                name: 'Power BI',
-                description: 'Microsoft business analytics platform',
-                consentRequired: true,
-                fallbackMessage: 'This dashboard offers advanced business intelligence features.'
-            },
-            tableau: {
-                enabled: true,
-                category: 'analytics',
-                name: 'Tableau',
-                description: 'Data visualization and business intelligence',
-                consentRequired: true,
-                fallbackMessage: 'This dashboard provides interactive data visualizations.'
-            },
-            grafana: {
-                enabled: true,
-                category: 'necessary',
-                name: 'Grafana',
-                description: 'Monitoring and observability platform',
-                consentRequired: false,
-                fallbackMessage: 'This dashboard is essential for system monitoring.'
-            },
-            metabase: {
-                enabled: true,
-                category: 'necessary',
-                name: 'Metabase',
-                description: 'Business intelligence and analytics',
-                consentRequired: false,
-                fallbackMessage: 'This dashboard is essential for business insights.'
-            },
-            kibana: {
-                enabled: true,
-                category: 'necessary',
-                name: 'Kibana',
-                description: 'Data visualization and search platform',
-                consentRequired: false,
-                fallbackMessage: 'This dashboard is essential for data exploration.'
-            },
-            quicksight: {
-                enabled: true,
-                category: 'analytics',
-                name: 'Amazon QuickSight',
-                description: 'Cloud-based business intelligence',
-                consentRequired: true,
-                fallbackMessage: 'This dashboard provides cloud-based analytics.'
-            }
-        },
-        
-        // Performance settings
-        performance: {
-            lazyLoad: true,
-            preloadCritical: true,
-            cacheDashboards: true
-        },
-        
-        // User experience settings
-        ux: {
-            showLoadingPlaceholder: true,
-            showConsentMessage: true,
-            allowManualLoad: true
-        },
-        
-        // Data retention for dashboard usage
-        dataRetention: {
-            dashboardLoads: 90, // days
-            userPreferences: 365, // days
-            analytics: 90 // days
-        }
+        note: 'Dashboard tracking is now managed through GTM for better integration with analytics'
+    },
+    
+    // Analytics settings (managed through GTM)
+    analytics: {
+        note: 'All analytics are now managed through GTM for better integration and consent management'
     }
 }; 

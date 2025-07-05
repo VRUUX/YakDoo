@@ -84,6 +84,14 @@
     // Save consent preferences
     function saveConsentPreferences(preferences) {
         setCookie(cookieConfig.cookieName, JSON.stringify(preferences), cookieConfig.cookieExpiryDays);
+        
+        // Update Google Analytics consent mode
+        if (typeof window.updateGAConsent === 'function') {
+            window.updateGAConsent(preferences);
+        }
+        
+        // Initialize tracking based on new preferences
+        initTracking();
     }
 
     // Initialize Google Analytics (only if consent given)
@@ -91,29 +99,26 @@
         const preferences = getConsentPreferences();
         if (!preferences || !preferences.analytics) return;
 
-        // Google Analytics 4
-        if (typeof gtag !== 'undefined') {
-            gtag('consent', 'update', {
-                'analytics_storage': 'granted'
-            });
+        // Check if GA is blocked by ad blocker
+        if (window.GA_BLOCKED) {
+            console.warn('VRUUX CMP: Google Analytics blocked by ad blocker - skipping initialization');
+            return;
         }
 
-        // Load Google Analytics script if not already loaded
-        if (!document.querySelector('script[src*="googletagmanager.com"]')) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-D92G25M5GQ';
-            document.head.appendChild(script);
-
-            script.onload = function() {
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-D92G25M5GQ', {
-                    'anonymize_ip': true,
-                    'cookie_flags': 'SameSite=Lax;Secure'
-                });
-            };
+        // Update GA consent mode if available
+        if (typeof window.updateGAConsent === 'function') {
+            window.updateGAConsent(preferences);
+        } else if (typeof gtag !== 'undefined') {
+            // Fallback for direct gtag access
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': preferences.marketing ? 'granted' : 'denied'
+            });
+            
+            // Send page view
+            gtag('config', 'G-D92G25M5GQ', {
+                'send_page_view': true
+            });
         }
     }
 
