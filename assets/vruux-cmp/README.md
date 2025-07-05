@@ -27,6 +27,7 @@ This folder contains the core GDPR-compliant analytics implementation using Goog
 - `CLEANUP_GUIDE.md` - Cleanup process documentation
 - `FINAL_IMPLEMENTATION_SUMMARY.md` - Implementation summary
 - `CLEANUP_COMPLETE.md` - Cleanup completion summary
+- `MOBIRISE_PROJECT_CHANGES.md` - Mobirise project settings guide
 
 ### **User-Facing Documentation**
 - `GDPR_IMPLEMENTATION.md` - GDPR compliance guide
