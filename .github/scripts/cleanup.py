@@ -8,13 +8,24 @@ def clean_html_file(filepath):
     # Remove Mobirise branding in footer and comments
     content = re.sub(r'<!--.*?Mobirise.*?-->', '', content, flags=re.DOTALL | re.IGNORECASE)
     
-    # Remove the specific Mobirise branding section in footer
-    content = re.sub(
-        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>',
-        '',
-        content,
-        flags=re.DOTALL | re.IGNORECASE
-    )
+    # Remove the specific Mobirise branding section - look for the unique content
+    # This targets the section that contains "No Code Website Builder" or similar Mobirise text
+    mobirise_patterns = [
+        # Pattern for "No Code Website Builder"
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>No Code Website Builder</a>.*?</section>',
+        # Pattern for "Website Building Software"
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*> Website Building Software</a>.*?</section>',
+        # Pattern for "HTML Maker"
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>HTML Maker</a>.*?</section>',
+        # Pattern for "Best AI Website Creator"
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>Best AI Website Creator</a>.*?</section>',
+        # Generic pattern for any Mobirise link
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>'
+    ]
+    
+    # Apply each pattern
+    for pattern in mobirise_patterns:
+        content = re.sub(pattern, '', content, flags=re.DOTALL | re.IGNORECASE)
     
     # Remove Mobirise version from meta generator
     content = re.sub(r'<meta name="generator" content="Mobirise v[\d\.]+, mobirise\.com">', '', content)
