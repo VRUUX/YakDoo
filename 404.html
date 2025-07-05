@@ -10,7 +10,12 @@
         window.location.replace('/' + path + '.html');
       }
     </script>
-  </head>
+    <style>
+    /* Fix footer visibility */
+    .footer2 { z-index: 10 !important; position: relative !important; }
+    section[class*="display-7"] { display: none !important; }
+  </style>
+</head>
   <body>
     <h1>Redirecting...</h1>
     <p>If you are not redirected, <a id="redir" href="#">click here</a>.</p>
