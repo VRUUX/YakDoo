@@ -7,8 +7,20 @@ def clean_html_file(filepath):
 
     # Remove Mobirise branding in footer and comments
     content = re.sub(r'<!--.*?Mobirise.*?-->', '', content, flags=re.DOTALL | re.IGNORECASE)
-    content = re.sub(r'<section[^>]*id="top-1"[^>]*>.*?</section>', '', content, flags=re.DOTALL | re.IGNORECASE)
-    content = re.sub(r'>Mobirise v[\d\.]+<', '><', content)
+    
+    # Remove the specific Mobirise branding section in footer
+    content = re.sub(
+        r'<section class="display-7"[^>]*>.*?<a[^>]*href="https://mobirise\.com[^"]*"[^>]*>.*?</a>.*?</section>',
+        '',
+        content,
+        flags=re.DOTALL | re.IGNORECASE
+    )
+    
+    # Remove Mobirise version from meta generator
+    content = re.sub(r'<meta name="generator" content="Mobirise v[\d\.]+, mobirise\.com">', '', content)
+    
+    # Remove Mobirise alt text from images
+    content = re.sub(r'alt="Mobirise Website Builder"', 'alt=""', content)
 
     # Fix script tags
     content = re.sub(
