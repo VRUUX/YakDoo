@@ -116,9 +116,9 @@
             });
             
             // Send page view
-            gtag('config', 'G-D92G25M5GQ', {
+                gtag('config', 'G-D92G25M5GQ', {
                 'send_page_view': true
-            });
+                });
         }
     }
 
