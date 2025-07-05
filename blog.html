@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/web/assets/gdpr-plugin/gdpr-styles.css">
+
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Fredoka:300,400,500,600,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka:300,400,500,600,700&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=1jOn0Z"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=1jOn0Z" type="text/css">
@@ -25,6 +27,9 @@
   
   
   <style>
+    /* Fix footer visibility */
+    .footer2 { z-index: 10 !important; position: relative !important; }
+    section[class*="display-7"] a[href*="mobirise.com"] { display: none !important; }
     /* Fix footer visibility */
     .footer2 { z-index: 10 !important; position: relative !important; }
     section[class*="display-7"] { display: none !important; }
@@ -137,10 +142,14 @@
             </div>
         </div>
     </div>
-</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+  <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+  
   
   
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
+  <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='2' data-cookie-customDialogSelector='null' data-cookie-colorText='#000000' data-cookie-colorBg='rgb(255, 153, 0)' data-cookie-opacityOverlay='0' data-cookie-bgOpacity='100' data-cookie-textButton='ACCEPT' data-cookie-rejectText='REJECT' data-cookie-colorButton='#ffffff' data-cookie-rejectColor='#ff4552' data-cookie-colorLink='#424a4d' data-cookie-underlineLink='true' data-cookie-text="We use cookies to give you the best experience as specified in the <a href='privacypolicy'>Privacy Policy</a>. Rejecting cookies may make some features unavailable.">
     <input name="animation" type="hidden">
   </body>
 </html>
