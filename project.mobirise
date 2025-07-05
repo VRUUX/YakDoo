@@ -86,8 +86,8 @@
     "sitemapSwitcherAuto": "on",
     "imageResize": true,
     "usedWebp": true,
-    "favicon": "@PROJECT_PATH@/assets/images/yakdoo-logo-128x39_1.png",
-    "mbrsiteDomain": "55dywrddab",
+    "favicon": false,
+    "mbrsiteDomain": "zncwbazcng",
     "robotsSwitcher": false,
     "gdpr": {
       "colorText": "#000000",
@@ -98,7 +98,9 @@
     "uniqCompNum": 33,
     "versionPublish": "6.1.0",
     "screenshot": "screenshot.png",
-    "robotsText": "User-agent: *\r\nDisallow: /cgi-bin\r\n"
+    "robotsText": "User-agent: *\r\nDisallow: /cgi-bin\r\n",
+    "google-analytics": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-D92G25M5GQ\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-D92G25M5GQ');\n</script>",
+    "publishEditFolder": true
   },
   "pages": {
     "blog.html": {
