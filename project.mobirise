@@ -1,6 +1,6 @@
 {
   "settings": {
-    "currentPage": "contact.html",
+    "currentPage": "privacypolicy.html",
     "theme": {
       "name": "startm5",
       "title": "StartM5",
@@ -66,41 +66,22 @@
       }
     ],
     "publishChangesOnly": false,
-    "cookiesAlert": {
-      "customDialogSelector": false,
-      "colorText": "#000000",
-      "colorBg": "#ff9900",
-      "colorButton": "#ffffff",
-      "rejectColor": "#ff4552",
-      "colorLink": "#424a4d",
-      "underlineLink": true,
-      "opacityOverlay": "0",
-      "bgOpacity": "100",
-      "text": "We use cookies to give you the best experience as specified in the <a href='privacypolicy.html'>Privacy Policy</a>. Rejecting cookies may make some features unavailable.",
-      "textButton": "ACCEPT",
-      "rejectText": "REJECT"
-    },
-    "cookiesAlertType": "2",
     "sitemapSwitcher": false,
     "siteUrl": false,
     "sitemapSwitcherAuto": "on",
     "imageResize": true,
     "usedWebp": true,
     "favicon": false,
-    "mbrsiteDomain": "zncwbazcng",
+    "mbrsiteDomain": "ae5fjxym0b",
     "robotsSwitcher": false,
-    "gdpr": {
-      "colorText": "#000000",
-      "colorLink": "#149dcc",
-      "underlineLink": false,
-      "text": "By continuing you agree to our <a href='privacypolicy.html'>Privacy Policy</a>."
-    },
     "uniqCompNum": 33,
     "versionPublish": "6.1.0",
     "screenshot": "screenshot.png",
     "robotsText": "User-agent: *\r\nDisallow: /cgi-bin\r\n",
-    "google-analytics": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-D92G25M5GQ\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-D92G25M5GQ');\n</script>",
-    "publishEditFolder": true
+    "google-analytics": "",
+    "publishEditFolder": true,
+    "cookiesAlert": false,
+    "gdpr": false
   },
   "pages": {
     "blog.html": {
